@@ -1,0 +1,33 @@
+[
+  {
+    "url": "/radiant-tee.html",
+    "name": "Radiant Tee",
+    "size": ["XS", "S", "M", "L", "XL"],
+    "color": ["Blue", "Orange", "Purple"],
+    "price": 22.0
+  },
+  {
+    "url": "/arcadio-gym-short.html",
+    "name": "Arcadio Gym Short",
+    "size": ["32", "33", "34", "36"],
+    "color": ["Black", "Blue", "Red"],
+    "price": 20.0
+  },
+  {
+    "url": "/aether-gym-pant.html",
+    "name": "Aether Gym Pant",
+    "size": ["32", "33", "34", "36"],
+    "color": ["Blue", "Brown", "Green"],
+    "price": 74.0
+  },
+  {
+    "url": "/overnight-duffle.html",
+    "name": "Overnight Duffle",
+    "price": 45.0
+  },
+  {
+    "url": "/affirm-water-bottle.html",
+    "name": "Affirm Water Bottle",
+    "price": 7.0
+  }
+]

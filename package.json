@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cypress": "^13.6.4",
+    "cypress-real-events": "^1.11.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.0"
+  }
+}
