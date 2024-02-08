@@ -3,7 +3,8 @@ const { shoppingCart } = require("./productCommands");
 
 Cypress.Commands.add("verifyLastOrder", () => {
   cy.get("@user").then((user) => {
-    const orderId = parseInt(user.orders.slice(-1)[0].replace("#", ""));
+    const lastOrder = user.orders.slice(-1)[0];
+    const orderId = parseInt(lastOrder.replace("#", ""));
     cy.visit(`/sales/order/view/order_id/${orderId - 1}`);
   });
   cy.verifyLastOrderNumberAndStatus();
