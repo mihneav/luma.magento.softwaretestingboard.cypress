@@ -29,28 +29,11 @@ Cypress.Commands.add("login", () => {
 Cypress.Commands.add("addAccountAddress", () => {
   cy.visit("/customer/address/edit/");
   cy.get("@user").then((user) => {
-    cy.get(editAddressPage.firstName).clear().type(user.firstName);
-    cy.get(editAddressPage.lastName).clear().type(user.lastName);
-    cy.get(editAddressPage.company).clear().type(user.company);
-    cy.get(editAddressPage.telephone).clear().type(user.mobileNumber);
-    cy.get(editAddressPage.street_1).clear().type(user.billingAddress.address1);
-    cy.get(editAddressPage.street_2).clear().type(user.billingAddress.address2);
-    cy.get(editAddressPage.city).clear().type(user.billingAddress.city);
-    cy.get(editAddressPage.region_id).select(user.billingAddress.state);
-    cy.get(editAddressPage.zip).clear().type(user.billingAddress.zipCode);
-    cy.get(editAddressPage.country).select(user.billingAddress.country);
+    cy.fillAddressFields(user.billingAddress);
     cy.get(editAddressPage.saveAddressButton).click();
-    cy.get(myAccountPage.editDefaultShippingAddress).click();
-    cy.get(editAddressPage.street_1)
-      .clear()
-      .type(user.shippingAddress.address1);
-    cy.get(editAddressPage.street_2)
-      .clear()
-      .type(user.shippingAddress.address2);
-    cy.get(editAddressPage.city).clear().type(user.shippingAddress.city);
-    cy.get(editAddressPage.region_id).select(user.shippingAddress.state);
-    cy.get(editAddressPage.zip).clear().type(user.shippingAddress.zipCode);
-    cy.get(editAddressPage.country).select(user.shippingAddress.country);
+    cy.visit("/customer/address/new/");
+    cy.fillAddressFields(user.shippingAddress);
+    cy.get(editAddressPage.primaryShipping).check();
     cy.get(editAddressPage.saveAddressButton).click();
   });
 });

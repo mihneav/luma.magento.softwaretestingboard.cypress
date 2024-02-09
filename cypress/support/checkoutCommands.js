@@ -27,8 +27,12 @@ Cypress.Commands.add("selectFlatRateShippingAndNext", () => {
   cy.get(checkoutPage.nextButton).click();
 });
 
-Cypress.Commands.add("verifyShippingAddress", () => {
+Cypress.Commands.add("verifyBillingAddressCheckout", () => {
   cy.verifyAddress("billingAddress", checkoutPage);
+});
+
+Cypress.Commands.add("verifyShippingAddressCheckout", () => {
+  cy.verifyAddress("shippingAddress", checkoutPage);
 });
 
 Cypress.Commands.add("checkShippingAddressSame", () => {
@@ -82,7 +86,8 @@ Cypress.Commands.add("loginInCheckout", () => {
     cy.get(checkoutPage.password).type(user.password);
   });
   cy.get(checkoutPage.signInButton).click();
-  cy.get(checkoutPage.loader).should("not.be.visible");
+  cy.get(checkoutPage.loader).should("be.visible");
+  cy.get(checkoutPage.loader, { timeout: 15000 }).should("not.be.visible");
 });
 
 Cypress.Commands.add("enterEmailAddressCheckout", () => {

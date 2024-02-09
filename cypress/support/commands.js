@@ -1,4 +1,5 @@
 const createAccountPage = require("../pageObjects/createAccountPage");
+const editAddressPage = require("../pageObjects/editAddressPage");
 
 Cypress.Commands.add("goToCart", () => {
   cy.visit("/checkout/cart/");
@@ -25,6 +26,21 @@ Cypress.Commands.add("verifyAddress", (addressType, page) => {
     Object.values(user[addressType]).forEach((value) => {
       cy.get(`@${addressType}`).should("contain", value);
     });
+  });
+});
+
+Cypress.Commands.add("fillAddressFields", (address) => {
+  cy.get("@user").then((user) => {
+    cy.get(editAddressPage.firstName).clear().type(user.firstName);
+    cy.get(editAddressPage.lastName).clear().type(user.lastName);
+    cy.get(editAddressPage.company).clear().type(user.company);
+    cy.get(editAddressPage.telephone).clear().type(user.mobileNumber);
+    cy.get(editAddressPage.street_1).clear().type(address.address1);
+    cy.get(editAddressPage.street_2).clear().type(address.address2);
+    cy.get(editAddressPage.city).clear().type(address.city);
+    cy.get(editAddressPage.region_id).select(address.state);
+    cy.get(editAddressPage.zip).clear().type(address.zipCode);
+    cy.get(editAddressPage.country).select(address.country);
   });
 });
 

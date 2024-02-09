@@ -15,6 +15,7 @@ const checkoutPage = {
   bestWayRadio: `.radio:nth(0)`,
   flatRateRatio: `.radio:nth(1)`,
   billingAddress: `.billing-address-details`,
+  shippingAddress: `.ship-to > .shipping-information-content`,
   billingAddressCheckbox: `#billing-address-same-as-shipping-checkmo`,
   placeOrderButton: `.payment-method-content .action.primary`,
   successTitle: `.base`,

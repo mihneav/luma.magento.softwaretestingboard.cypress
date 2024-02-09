@@ -18,7 +18,8 @@ describe("Validate Place Order Functionality", () => {
     // Type Shipping Address Details
     // Select "Best Way" shipping and click "Next"
     // Check "Shipping Address is the same as Billing Address"
-    // Place Order
+    // Verifies Shipping Address
+    // Verifies Billing Address
     // Verify Order Success Message
     // Verify last order in My Orders:
     //  Order Number, Order Status, Order Rows,
@@ -34,8 +35,9 @@ describe("Validate Place Order Functionality", () => {
     cy.proceedToCheckout();
     cy.enterShippingAddress();
     cy.selectBestWayShippingAndNext();
-    cy.verifyShippingAddress();
     cy.checkShippingAddressSame();
+    cy.verifyShippingAddressCheckout();
+    cy.verifyBillingAddressCheckout();
     cy.placeOrder();
     cy.verifyOrderSuccess();
     cy.verifyLastOrder();
@@ -55,6 +57,8 @@ describe("Validate Place Order Functionality", () => {
     // Type Email
     // Select "Best Way" shipping and click "Next"
     // Check "Shipping Address is the same as Billing Address"
+    // Verifies Shipping Address
+    // Verifies Billing Address
     // Place Order
     // Verify Order Success Message
     // Click Create Account
@@ -77,8 +81,9 @@ describe("Validate Place Order Functionality", () => {
     cy.enterShippingAddress();
     cy.enterEmailAddressCheckout();
     cy.selectBestWayShippingAndNext();
-    cy.verifyShippingAddress();
     cy.checkShippingAddressSame();
+    cy.verifyShippingAddressCheckout();
+    cy.verifyBillingAddressCheckout();
     cy.placeOrder();
     cy.verifyOrderSuccessNoAccount();
     cy.createAccountThankYou();
@@ -96,6 +101,8 @@ describe("Validate Place Order Functionality", () => {
     // Type Shipping Address Details
     // Select "Best Way" shipping and click "Next"
     // Check "Shipping Address is the same as Billing Address"
+    // Verifies Shipping Address
+    // Verifies Billing Address
     // Place Order
     // Verify Order Success Message
     // Verify last order in My Orders:
@@ -113,46 +120,45 @@ describe("Validate Place Order Functionality", () => {
     cy.loginInCheckout();
     cy.enterShippingAddress();
     cy.selectBestWayShippingAndNext();
-    cy.verifyShippingAddress();
     cy.checkShippingAddressSame();
+    cy.verifyShippingAddressCheckout();
+    cy.verifyBillingAddressCheckout();
     cy.placeOrder();
     cy.verifyOrderSuccess();
     cy.verifyLastOrder();
   });
 
-  //   it(`Place order with existing addresses`, () => {
-  //     // Create User Account
-  //     // Logout
-  //     // Add "Short" to the Cart, quantity 3
-  //     // Verify product details
-  //     // Verify Order Summary
-  //     // Proceed to checkout
-  //     // Log in Checkout
-  //     // Type Shipping Address Details
-  //     // Select "Best Way" shipping and click "Next"
-  //     // Check "Shipping Address is the same as Billing Address"
-  //     // Place Order
-  //     // Verify Order Success Message
-  //     // Verify last order in My Orders:
-  //     //  Order Number, Order Status, Order Rows,
-  //     //  SubTotal, Total,
-  //     //  Billing Address, Shipping Address
+  it(`Place order with existing addresses`, () => {
+    // Create User Account
+    // Logout
+    // Add "Short" to the Cart, quantity 3
+    // Verify product details
+    // Verify Order Summary
+    // Proceed to checkout
+    // Log in Checkout
+    // Type Shipping Address Details
+    // Select "Best Way" shipping and click "Next"
+    // Verifies Shipping Address
+    // Verifies Billing Address
+    // Place Order
+    // Verify Order Success Message
+    // Verify last order in My Orders:
+    //  Order Number, Order Status, Order Rows,
+    //  SubTotal, Total,
+    //  Billing Address, Shipping Address
 
-  //     cy.createAccount();
-  //     cy.addAccountAddress();
-  //     // cy.logout();
-  //     // cy.addProductToCart("Arcadio Gym Short", 3, "32", "Blue");
-  //     // cy.goToCart();
-  //     // cy.verifyCart();
-  //     // cy.verifySummary();
-  //     // cy.proceedToCheckout();
-  //     // cy.loginInCheckout();
-  //     // cy.enterShippingAddress();
-  //     // cy.selectBestWayShippingAndNext();
-  //     // cy.verifyShippingAddress();
-  //     // cy.checkShippingAddressSame();
-  //     // cy.placeOrder();
-  //     // cy.verifyOrderSuccess();
-  //     // cy.verifyLastOrder();
-  //   });
+    cy.createAccount();
+    cy.addAccountAddress();
+    cy.addProductToCart("Arcadio Gym Short", 3, "32", "Blue");
+    cy.goToCart();
+    cy.verifyCart();
+    cy.verifySummary();
+    cy.proceedToCheckout();
+    cy.selectBestWayShippingAndNext();
+    cy.verifyShippingAddressCheckout();
+    cy.verifyBillingAddressCheckout();
+    cy.placeOrder();
+    cy.verifyOrderSuccess();
+    cy.verifyLastOrder();
+  });
 });
