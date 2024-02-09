@@ -24,7 +24,7 @@ class User {
     });
   }
 
-  get zipcode() {
+  get zipCode() {
     return "12345-6789"; //faker.address.zipCode(`${this.state}`);
   }
 
@@ -37,7 +37,7 @@ class User {
       address1: faker.location.streetAddress(),
       address2: faker.location.secondaryAddress(),
       country: this._country,
-      zipcode: this.zipcode,
+      zipCode: this.zipCode,
       state: this.state,
       city: this._city,
     };
@@ -48,12 +48,12 @@ class User {
       name: this.name,
       email: this.email,
       password: this._password,
-      firstname: this._firstName,
-      lastname: this._lastName,
+      firstName: this._firstName,
+      lastName: this._lastName,
       company: this._company,
       billingAddress: this.generateAddress(),
       shippingAddress: this.generateAddress(),
-      mobile_number: this._mobileNumber,
+      mobileNumber: this._mobileNumber,
       orders: this._orders,
     };
   }

@@ -1,9 +1,10 @@
 const createAccountPage = require("../pageObjects/createAccountPage");
 
 Cypress.Commands.add("goToCart", () => {
-  cy.get(".counter-number").should("be.visible");
-  cy.get(".showcart").click();
-  cy.get(".viewcart").click();
+  cy.visit("/checkout/cart/");
+  // cy.get(".counter-number").should("be.visible");
+  // cy.get(".showcart").click();
+  // cy.get(".viewcart").click();
 });
 
 Cypress.Commands.add("cleanUp", () => {
@@ -17,9 +18,9 @@ Cypress.Commands.add("verifyAddress", (addressType, page) => {
     cy.get(page[addressType], { timeout: 9000 })
       .should("be.visible")
       .as(addressType);
-    cy.get(`@${addressType}`).should("contain", user.firstname);
-    cy.get(`@${addressType}`).should("contain", user.lastname);
-    cy.get(`@${addressType}`).should("contain", user.mobile_number);
+    cy.get(`@${addressType}`).should("contain", user.firstName);
+    cy.get(`@${addressType}`).should("contain", user.lastName);
+    cy.get(`@${addressType}`).should("contain", user.mobileNumber);
 
     Object.values(user[addressType]).forEach((value) => {
       cy.get(`@${addressType}`).should("contain", value);
@@ -29,8 +30,8 @@ Cypress.Commands.add("verifyAddress", (addressType, page) => {
 
 Cypress.Commands.add("enterCreateAccountDetails", () => {
   cy.get("@user").then((user) => {
-    cy.get(createAccountPage.firstname).clear().type(user.firstname);
-    cy.get(createAccountPage.lastname).clear().type(user.lastname);
+    cy.get(createAccountPage.firstname).clear().type(user.firstName);
+    cy.get(createAccountPage.lastname).clear().type(user.lastName);
     cy.get(createAccountPage.emailAddress).clear().type(user.email);
     cy.get(createAccountPage.password).clear().type(user.password);
     cy.get(createAccountPage.passwordConfirmation).clear().type(user.password);

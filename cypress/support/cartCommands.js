@@ -78,7 +78,7 @@ Cypress.Commands.add(
     cy.get(cartPage.cartItem(index).quantity)
       .invoke("val")
       .should("contain", productQuantity);
-    // cy.get(".loading-mask").should("not.be.visible");
+    cy.get(".loading-mask").should("not.be.visible");
   }
 );
 
