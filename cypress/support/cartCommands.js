@@ -1,4 +1,5 @@
 const cartPage = require("../pageObjects/cartPage");
+const checkoutPage = require("../pageObjects/checkoutPage");
 const { shoppingCart } = require("./productCommands");
 
 Cypress.Commands.add("verifyCart", () => {
@@ -59,6 +60,12 @@ Cypress.Commands.add("proceedToCheckout", () => {
   cy.get(cartPage.proceedToCheckout).click({ force: true });
 });
 
+Cypress.Commands.add("checkoutMultipleAddresses", () => {
+  cy.get(cartPage.orderTotal).should("be.visible");
+  // cy.get(cartPage.summaryLoader).should("not.be.visible");
+  cy.get(cartPage.multiCheckout).click({ force: true });
+});
+
 Cypress.Commands.add(
   "updateProductQuantityInCart",
   (productName, productQuantity, productSize, productColor) => {
@@ -101,8 +108,8 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add("addCoupon", (coupon) => {
-  cy.get("#block-discount-heading").click();
-  cy.get("#coupon_code").clear().type(coupon);
+  cy.get("#block-discount-heading").realClick();
+  cy.get("#coupon_code").should("be.visible").clear().type(coupon);
   cy.get("#discount-coupon-form .action")
     .click()
     .then(() => {

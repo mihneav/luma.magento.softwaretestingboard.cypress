@@ -1,6 +1,5 @@
-import productDetailsPage from "../pageObjects/productDetailsPage";
-
 require("cypress-real-events/support");
+const productDetailsPage = require("../pageObjects/productDetailsPage");
 const { ShoppingCart } = require("../utils/ShoppingCart");
 export const shoppingCart = new ShoppingCart();
 

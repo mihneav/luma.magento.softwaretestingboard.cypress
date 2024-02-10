@@ -1,60 +1,44 @@
 const { faker } = require("@faker-js/faker");
+const Address = require("./Address");
 
 class User {
   constructor() {
-    this._firstName = faker.person.firstName();
-    this._lastName = faker.person.lastName();
-    this._password = faker.internet.password() + "aA7!";
-    this._company = faker.company.name();
-
-    this._country = "United States";
-    this._city = faker.location.city();
-    this._mobileNumber = faker.phone.number();
-    this._orders = [];
-  }
-
-  get name() {
-    return `${this._firstName} ${this._lastName}`;
+    this.firstName = faker.person.firstName();
+    this.lastName = faker.person.lastName();
+    this.password = faker.internet.password() + "aA7!";
+    this.company = faker.company.name();
+    this.mobileNumber = faker.phone.number();
+    this.billingAddress = new Address();
+    this.shippingAddress = new Address();
+    this.orders = [];
+    this.multiAddress = [];
+    this.multiProducts = [];
   }
 
   get email() {
     return faker.internet.email({
-      firstName: this._firstName,
-      lastName: this._lastName,
+      firstName: this.firstName,
+      lastName: this.lastName,
     });
   }
 
-  get zipCode() {
-    return "12345-6789"; //faker.address.zipCode(`${this.state}`);
-  }
-
   get state() {
-    return faker.address.state(`${this._country}`);
-  }
-
-  generateAddress() {
-    return {
-      address1: faker.location.streetAddress(),
-      address2: faker.location.secondaryAddress(),
-      country: this._country,
-      zipCode: this.zipCode,
-      state: this.state,
-      city: this._city,
-    };
+    return faker.location.state(this.country);
   }
 
   generateUser() {
     return {
-      name: this.name,
+      firstName: this.firstName,
+      lastName: this.lastName,
       email: this.email,
-      password: this._password,
-      firstName: this._firstName,
-      lastName: this._lastName,
-      company: this._company,
-      billingAddress: this.generateAddress(),
-      shippingAddress: this.generateAddress(),
-      mobileNumber: this._mobileNumber,
-      orders: this._orders,
+      password: this.password,
+      company: this.company,
+      billingAddress: this.billingAddress,
+      shippingAddress: this.shippingAddress,
+      mobileNumber: this.mobileNumber,
+      orders: this.orders,
+      multiAddress: this.multiAddress,
+      multiProducts: this.multiProducts,
     };
   }
 }

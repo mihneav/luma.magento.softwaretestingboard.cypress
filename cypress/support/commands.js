@@ -44,7 +44,7 @@ Cypress.Commands.add("fillAddressFields", (address) => {
   });
 });
 
-Cypress.Commands.add("enterCreateAccountDetails", () => {
+Cypress.Commands.add("fillCreateAccountDetails", () => {
   cy.get("@user").then((user) => {
     cy.get(createAccountPage.firstname).clear().type(user.firstName);
     cy.get(createAccountPage.lastname).clear().type(user.lastName);

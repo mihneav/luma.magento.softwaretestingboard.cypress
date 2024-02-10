@@ -33,14 +33,14 @@ describe("Validate Place Order Functionality", () => {
     cy.verifyCart();
     cy.verifySummary();
     cy.proceedToCheckout();
-    cy.enterShippingAddress();
+    cy.fillShippingAddress();
     cy.selectBestWayShippingAndNext();
     cy.checkShippingAddressSame();
     cy.verifyShippingAddressCheckout();
     cy.verifyBillingAddressCheckout();
     cy.placeOrder();
     cy.verifyOrderSuccess();
-    cy.verifyLastOrder();
+    cy.verifyOrders();
   });
 
   it(`Place order and create user in checkout`, () => {
@@ -78,8 +78,8 @@ describe("Validate Place Order Functionality", () => {
     cy.verifyCart();
     cy.verifySummary();
     cy.proceedToCheckout();
-    cy.enterShippingAddress();
-    cy.enterEmailAddressCheckout();
+    cy.fillShippingAddress();
+    cy.fillEmailAddressCheckout();
     cy.selectBestWayShippingAndNext();
     cy.checkShippingAddressSame();
     cy.verifyShippingAddressCheckout();
@@ -87,13 +87,13 @@ describe("Validate Place Order Functionality", () => {
     cy.placeOrder();
     cy.verifyOrderSuccessNoAccount();
     cy.createAccountThankYou();
-    cy.verifyLastOrder();
+    cy.verifyOrders();
   });
 
   it(`Place order and login user in checkout`, () => {
     // Create User Account
     // Logout
-    // Add "Short" to the Cart, quantity 3
+    // Add "Arcadio Gym Short" to the Cart, quantity 3
     // Verify product details
     // Verify Order Summary
     // Proceed to checkout
@@ -118,20 +118,20 @@ describe("Validate Place Order Functionality", () => {
     cy.verifySummary();
     cy.proceedToCheckout();
     cy.loginInCheckout();
-    cy.enterShippingAddress();
+    cy.fillShippingAddress();
     cy.selectBestWayShippingAndNext();
     cy.checkShippingAddressSame();
     cy.verifyShippingAddressCheckout();
     cy.verifyBillingAddressCheckout();
     cy.placeOrder();
     cy.verifyOrderSuccess();
-    cy.verifyLastOrder();
+    cy.verifyOrders();
   });
 
   it(`Place order with existing addresses`, () => {
     // Create User Account
     // Logout
-    // Add "Short" to the Cart, quantity 3
+    // Add "Arcadio Gym Short" to the Cart, quantity 3
     // Verify product details
     // Verify Order Summary
     // Proceed to checkout
@@ -159,6 +159,44 @@ describe("Validate Place Order Functionality", () => {
     cy.verifyBillingAddressCheckout();
     cy.placeOrder();
     cy.verifyOrderSuccess();
-    cy.verifyLastOrder();
+    cy.verifyOrders();
+  });
+
+  it(`Place order with multiple addresses`, () => {
+    // Create User Account
+    // Add "Arcadio Gym Short" to the Cart, quantity 1
+    // Add "Radiant Tee" to the Cart, quantity 1
+    // Verify product details
+    // Verify Order Summary
+    // Checkout with Multiple Addresses
+    // Add a Shipping Address for each Cart Item
+    // Update Addresses
+    // Press Continue buttons and Place orders with Multiple Addresses
+    // Place Orders
+    // Verify Order Success Message
+    // Verify orders in My Orders:
+    //  Order Number, Order Status, Order Rows,
+    //  Subtotal, Shipping, Total,
+    //  Billing Address, Shipping Address
+
+    cy.createAccount();
+    cy.addProductToCart("Arcadio Gym Short", 1, "32", "Blue");
+    cy.addProductToCart("Radiant Tee", 1, "S", "Blue");
+    cy.goToCart();
+    cy.verifyCart();
+    cy.verifySummary();
+    cy.checkoutMultipleAddresses();
+    cy.addShippingAddressForEachCartItem();
+    cy.clickUpdateQtyAndAddresses();
+    cy.placeMultiCheckoutOrder();
+    cy.verifyMultiCheckoutSuccess();
+    cy.verifyOrders();
+    // cy.proceedToCheckout();
+    // cy.selectBestWayShippingAndNext();
+    // cy.verifyShippingAddressCheckout();
+    // cy.verifyBillingAddressCheckout();
+    // cy.placeOrder();
+    // cy.verifyOrderSuccess();
+    // cy.verifyOrders();
   });
 });

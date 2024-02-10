@@ -62,16 +62,16 @@ export class ShoppingCart {
     return parseFloat(totalShirtDiscount);
   }
 
-  calculatePantsDiscount() {
-    const discountedPants = this.products.filter((product) =>
-      product.name.includes("Pant")
-    );
-    console.log(discountedPants);
-    const totalPantsDiscount = discountedPants
-      .reduce((sum, product) => sum + product.price * product.quantity * 0.2, 0)
-      .toFixed(2);
-    return parseFloat(totalPantsDiscount);
-  }
+  // calculatePantsDiscount() { //promotion not implemented
+  //   const discountedPants = this.products.filter((product) =>
+  //     product.name.includes("Pant")
+  //   );
+  //   console.log(discountedPants);
+  //   const totalPantsDiscount = discountedPants
+  //     .reduce((sum, product) => sum + product.price * product.quantity * 0.2, 0)
+  //     .toFixed(2);
+  //   return parseFloat(totalPantsDiscount);
+  // }
 
   calculateTwentyPercentDiscountOnOrder() {
     let discount = 0;
@@ -104,12 +104,17 @@ export class ShoppingCart {
   }
 
   calculateTotalDiscounts() {
+    //TODO: tweak total Discounts calculation once cumulative 20% off orders > $200 is fixed
     return (
       this.calculateTshirtsDiscount() +
       this.calculateCouponDiscount() +
       // this.calculatePantsDiscount() +
       this.calculateTwentyPercentDiscountOnOrder()
     );
+  }
+
+  calculateNumberOfItems() {
+    return this.products.reduce((sum, product) => sum + product.quantity, 0);
   }
 
   calculateGrandTotal() {

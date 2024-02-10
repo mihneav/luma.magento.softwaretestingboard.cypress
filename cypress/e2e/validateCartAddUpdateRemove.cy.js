@@ -17,6 +17,7 @@ describe("Validate Add/Update/Remove Cart Functionality", () => {
     cy.addProductToCart("Aether Gym Pant", 1, "34", "Brown");
     cy.addProductToCart("Radiant Tee", 4, "S", "Blue");
     cy.goToCart();
+    cy.verifyCart();
     cy.updateProductQuantityInCart("Radiant Tee", 7, "S", "Blue");
     cy.updateProductQuantityInCart("Aether Gym Pant", 3, "34", "Brown");
     cy.verifyCart();
@@ -34,6 +35,7 @@ describe("Validate Add/Update/Remove Cart Functionality", () => {
     cy.addProductToCart("Aether Gym Pant", 1, "34", "Brown");
     cy.addProductToCart("Radiant Tee", 4, "S", "Blue");
     cy.goToCart();
+    cy.verifyCart();
     cy.removeProductInCart("Radiant Tee", "S", "Blue");
     cy.verifyCart();
     cy.removeProductInCart("Aether Gym Pant", "34", "Brown");

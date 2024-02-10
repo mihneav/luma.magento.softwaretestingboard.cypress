@@ -10,7 +10,7 @@ Cypress.Commands.add("generateUser", () => {
 
 Cypress.Commands.add("createAccount", () => {
   cy.visit("/customer/account/create/");
-  cy.enterCreateAccountDetails();
+  cy.fillCreateAccountDetails();
 });
 
 Cypress.Commands.add("logout", () => {
