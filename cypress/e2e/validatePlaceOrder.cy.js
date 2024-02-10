@@ -44,7 +44,7 @@ describe("Validate Place Order Functionality", () => {
   });
 
   it(`Place order and create user in checkout`, () => {
-    // Add "Radiant Tee" to the Cart, quantity 3
+    // Add "Radiant Tee" to the Cart, quantity 4
     // Add "Arcadio Gym Short", quantity 1
     // Add "Affirm Water Bottle", quantity 2
     // Verify product details
@@ -198,5 +198,53 @@ describe("Validate Place Order Functionality", () => {
     // cy.placeOrder();
     // cy.verifyOrderSuccess();
     // cy.verifyOrders();
+  });
+
+  it(`Place order and reorder`, () => {
+    // Create Account
+    // Add "Radiant Tee" to the Cart, quantity 4
+    // Add "Arcadio Gym Short", quantity 1
+    // Add "Affirm Water Bottle", quantity 2
+    // Verify product details
+    // Verify Order Summary
+    // Proceed to checkout
+    // Type Shipping Address Details
+    // Select "Best Way" shipping and click "Next"
+    // Check "Shipping Address is the same as Billing Address"
+    // Verify Shipping Address
+    // Verify Billing Address
+    // Place Order
+    // Verify Order Success Message
+    // Go to the last order in My Orders page
+    // Click Reorder
+    // Verify product details
+    // Verify Order Summary
+    // Select "Best Way" shipping and click "Next"
+    // Verifies Shipping Address
+    // Verifies Billing Address
+    // Place Order
+    // Verify Order Success Message
+    // Verify orders in My Orders
+    //  Order Number, Order Status, Order Rows,
+    //  SubTotal, Total,
+    //  Billing Address, Shipping Address
+
+    cy.createAccount();
+    cy.addProductToCart("Radiant Tee", 4, "S", "Blue");
+    cy.addProductToCart("Arcadio Gym Short", 1, "32", "Blue");
+    cy.addProductToCart("Affirm Water Bottle", 2);
+    cy.goToCart();
+    cy.verifyCart();
+    cy.verifySummary();
+    cy.proceedToCheckout();
+    cy.fillShippingAddress();
+    cy.selectBestWayShippingAndNext();
+    cy.checkShippingAddressSame();
+    cy.verifyShippingAddressCheckout();
+    cy.verifyBillingAddressCheckout();
+    cy.placeOrder();
+    cy.verifyOrderSuccess();
+    cy.reorder();
+    cy.verifyOrders();
   });
 });

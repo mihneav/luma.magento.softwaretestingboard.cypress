@@ -108,6 +108,7 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add("addCoupon", (coupon) => {
+  cy.get(cartPage.orderTotal).should("be.visible");
   cy.get("#block-discount-heading").realClick();
   cy.get("#coupon_code").should("be.visible").clear().type(coupon);
   cy.get("#discount-coupon-form .action")

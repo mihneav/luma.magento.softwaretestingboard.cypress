@@ -1,7 +1,7 @@
 export class ShoppingCart {
   constructor() {
     this.products = [];
-    this.coupons = [];
+    this.coupon;
   }
 
   addProduct(product) {
@@ -83,7 +83,7 @@ export class ShoppingCart {
   }
 
   addCoupon(coupon) {
-    this.coupons.push(coupon);
+    this.coupon = coupon;
   }
 
   calculateCouponDiscount() {
@@ -92,7 +92,7 @@ export class ShoppingCart {
     const discountedBottles = this.products.filter((product) =>
       product.name.includes("Water Bottle")
     );
-    if (this.coupons.includes("h20")) {
+    if (this.coupon === "h20") {
       totalCouponDiscount = discountedBottles
         .reduce(
           (sum, product) => sum + product.price * product.quantity * 0.7,

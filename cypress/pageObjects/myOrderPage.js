@@ -20,6 +20,7 @@ const myOrderPage = {
   shippingAddress: `.box-order-shipping-address > .box-content > address`,
   shippingMethod: `.box-order-shipping-method > .box-content`,
   billingAddress: `.box-order-billing-address > .box-content > address`,
+  reorder: `.order > span`,
 };
 
 module.exports = myOrderPage;

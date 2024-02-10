@@ -2,62 +2,6 @@ const { billingAddress } = require("../pageObjects/checkoutPage");
 const myOrderPage = require("../pageObjects/myOrderPage");
 const { shoppingCart } = require("./productCommands");
 
-// Cypress.Commands.add("verifyLastOrder", () => {
-//   cy.get("@user").then((user) => {
-//     const lastOrder = user.orders.slice(-1)[0];
-//     const orderId = parseInt(lastOrder.replace("#", ""));
-//     cy.visit(`/sales/order/view/order_id/${orderId - 1}`);
-//   });
-//   cy.verifyLastOrderNumberAndStatus();
-//   cy.verifyLastOrderRows();
-//   cy.verifyLastOrderSummary();
-//   // cy.verifyOrderBillingAddress();
-//   // cy.verifyOrderShippingAddress();
-// });
-
-// Cypress.Commands.add("verifyLastOrderNumberAndStatus", () => {
-//   cy.get("@orderNumber").then((orderNumber) => {
-//     cy.get(myOrderPage.orderTitle).should("contain", parseInt(orderNumber));
-//   });
-//   cy.get(myOrderPage.orderStatus).should("have.text", "Pending");
-// });
-
-// Cypress.Commands.add("verifyLastOrderRows", () => {
-//   shoppingCart.products.forEach((product, index) => {
-//     cy.get(myOrderPage.orderItemRow(index).quantity).should(
-//       "have.text",
-//       shoppingCart.products[index].quantity.toString()
-//     );
-//     cy.get(myOrderPage.orderItemRow(index).price).should(
-//       "contain",
-//       shoppingCart.products[index].price
-//     );
-//     cy.get(myOrderPage.orderItemRow(index).subtotal).should(
-//       "contain",
-//       shoppingCart.products[index].price * shoppingCart.products[index].quantity
-//     );
-//     if (shoppingCart.products[index].size) {
-//       cy.get(myOrderPage.orderItemRow(index).itemOptions).should(
-//         "contain",
-//         shoppingCart.products[index].size
-//       );
-//     }
-//     if (shoppingCart.products[index].color) {
-//       cy.get(myOrderPage.orderItemRow(index).itemOptions).should(
-//         "contain",
-//         shoppingCart.products[index].color
-//       );
-//     }
-//   });
-// });
-
-// Cypress.Commands.add("verifyLastOrderSummary", () => {
-//   cy.get(myOrderPage.subtotal).should(
-//     "contain",
-//     `$${shoppingCart.calculateSubtotalPrice()}`
-//   );
-// });
-
 Cypress.Commands.add("verifyOrders", () => {
   cy.get("@user").then((user) => {
     user.orders.forEach((order) => {
@@ -123,5 +67,22 @@ Cypress.Commands.add("verifyOrders", () => {
         cy.get(`@shippingAddress`).should("contain", value);
       });
     });
+  });
+});
+
+Cypress.Commands.add("reorder", () => {
+  cy.get("@user").then((user) => {
+    const lastOrderIndex = user.orders.length - 1;
+    const lastOrderNumber = user.orders[lastOrderIndex].orderNumber;
+    cy.visit(`/sales/order/view/order_id/${lastOrderNumber - 1}`);
+    cy.get(myOrderPage.reorder).click();
+    cy.verifyCart();
+    cy.verifySummary();
+    cy.proceedToCheckout();
+    cy.selectBestWayShippingAndNext();
+    cy.verifyShippingAddressCheckout();
+    cy.verifyBillingAddressCheckout();
+    cy.placeOrder();
+    cy.verifyOrderSuccess();
   });
 });
