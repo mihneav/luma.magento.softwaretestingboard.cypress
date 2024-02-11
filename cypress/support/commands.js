@@ -1,17 +1,13 @@
 const createAccountPage = require("../pageObjects/createAccountPage");
 const editAddressPage = require("../pageObjects/editAddressPage");
+const { shoppingCart } = require("./productCommands");
 
 Cypress.Commands.add("goToCart", () => {
   cy.visit("/checkout/cart/");
+  cy.log(shoppingCart);
   // cy.get(".counter-number").should("be.visible");
   // cy.get(".showcart").click();
   // cy.get(".viewcart").click();
-});
-
-Cypress.Commands.add("cleanUp", () => {
-  cy.clearAllCookies();
-  cy.clearAllLocalStorage();
-  cy.clearAllSessionStorage();
 });
 
 Cypress.Commands.add("verifyAddress", (addressType, page) => {

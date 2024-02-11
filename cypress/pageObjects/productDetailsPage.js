@@ -5,6 +5,7 @@ const productDetailsPage = {
   },
   quantity: `#qty`,
   addToCartButton: `#product-addtocart-button`,
+  addToWishlistButton: `.product-addto-links > .towishlist`,
 };
 
 module.exports = productDetailsPage;

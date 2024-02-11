@@ -1,4 +1,4 @@
-export class ShoppingCart {
+class ShoppingCart {
   constructor() {
     this.products = [];
     this.coupon;
@@ -122,7 +122,10 @@ export class ShoppingCart {
     return total.toFixed(2);
   }
 
-  clearProducts() {
+  clear() {
     this.products.length = 0;
+    this.cupon = "";
   }
 }
+
+module.exports = ShoppingCart;

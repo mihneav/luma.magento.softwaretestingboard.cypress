@@ -1,8 +1,4 @@
 describe("Validate Place Order Functionality", () => {
-  before(() => {
-    cy.cleanUp();
-  });
-
   beforeEach(() => {
     cy.clearShoppingCart();
     cy.generateUser().as("user");
@@ -191,13 +187,6 @@ describe("Validate Place Order Functionality", () => {
     cy.placeMultiCheckoutOrder();
     cy.verifyMultiCheckoutSuccess();
     cy.verifyOrders();
-    // cy.proceedToCheckout();
-    // cy.selectBestWayShippingAndNext();
-    // cy.verifyShippingAddressCheckout();
-    // cy.verifyBillingAddressCheckout();
-    // cy.placeOrder();
-    // cy.verifyOrderSuccess();
-    // cy.verifyOrders();
   });
 
   it(`Place order and reorder`, () => {

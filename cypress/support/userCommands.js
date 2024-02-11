@@ -20,10 +20,10 @@ Cypress.Commands.add("logout", () => {
 Cypress.Commands.add("login", () => {
   cy.get("@user").then((user) => {
     cy.visit("/customer/account/login/referer/");
-    cy.get("#email").type(user.email);
-    cy.get(".login-container #pass").type(user.password);
+    cy.get(loginPage.email).type(user.email);
+    cy.get(loginPage.password).type(user.password);
   });
-  cy.get("#send2").click();
+  cy.get(loginPage.signIn).click();
 });
 
 Cypress.Commands.add("addAccountAddress", () => {

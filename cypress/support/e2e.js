@@ -20,6 +20,7 @@ import "./cartCommands";
 import "./userCommands";
 import "./checkoutCommands";
 import "./myOrderCommands";
+import "./wishlistCommands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

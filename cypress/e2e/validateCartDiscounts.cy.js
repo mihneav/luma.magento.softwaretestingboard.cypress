@@ -1,8 +1,4 @@
 describe("Validate Discounts Functionality", () => {
-  before(() => {
-    cy.cleanUp();
-  });
-
   beforeEach(() => {
     cy.clearShoppingCart();
   });
@@ -24,23 +20,6 @@ describe("Validate Discounts Functionality", () => {
     cy.verifySummary();
   });
 
-  it(`Verifies 20% off $200 purchase`, () => {
-    // Add "Overnight Duffle" to the Cart, quantity 4
-    // Verify product details
-    // Verify Order Summary with no discount applied
-    // Modify "Overnight Duffle" quantity from 4 to 5
-    // Verify product details
-    // Verify Order Summary with Discount
-
-    cy.addProductToCart("Overnight Duffle", 4);
-    cy.goToCart();
-    cy.verifyCart();
-    cy.verifySummary();
-    cy.updateProductQuantityInCart("Overnight Duffle", 5);
-    cy.verifyCart();
-    cy.verifySummary();
-  });
-
   it(`Verifies discount coupons`, () => {
     // Add "Affirm Water Bottle" to the Cart, quantity 1
     // Verify product details
@@ -58,6 +37,24 @@ describe("Validate Discounts Functionality", () => {
     cy.addCoupon("h20");
     cy.verifySummary();
     cy.updateProductQuantityInCart("Affirm Water Bottle", 3);
+    cy.verifyCart();
+    cy.verifySummary();
+  });
+
+  it(`Verifies 20% off $200 purchase FAIL`, () => {
+    //fails, promotion does not apply to all products
+    // Add "Overnight Duffle" to the Cart, quantity 4
+    // Verify product details
+    // Verify Order Summary with no discount applied
+    // Modify "Overnight Duffle" quantity from 4 to 5
+    // Verify product details
+    // Verify Order Summary with Discount
+
+    cy.addProductToCart("Cruise Dual Analog Watch", 3);
+    cy.goToCart();
+    cy.verifyCart();
+    cy.verifySummary();
+    cy.updateProductQuantityInCart("Cruise Dual Analog Watch", 4);
     cy.verifyCart();
     cy.verifySummary();
   });
