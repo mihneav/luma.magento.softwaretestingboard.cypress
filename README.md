@@ -82,3 +82,10 @@ Severity: Major
 - tax validation
 - shipping method variation
 - Add Recently Ordered Products to Cart
+
+## Test Execution:
+![image](https://github.com/mihneav/luma.magento.softwaretestingboard.cypress/assets/7737551/cac9fe9e-50ef-418b-8ef5-5aa6fca3274a)
+![image](https://github.com/mihneav/luma.magento.softwaretestingboard.cypress/assets/7737551/5a2dd094-2152-4779-afed-c080be0437a4)
+![image](https://github.com/mihneav/luma.magento.softwaretestingboard.cypress/assets/7737551/e08cdcdd-c917-45c9-80c0-24873ebeb22b)
+
+
