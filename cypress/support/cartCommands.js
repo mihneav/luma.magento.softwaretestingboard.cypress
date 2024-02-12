@@ -36,7 +36,6 @@ Cypress.Commands.add("verifyCart", () => {
 });
 
 Cypress.Commands.add("verifySummary", () => {
-  // cy.get(cartPage.summaryLoader).should("not.be.visible");
   cy.get(cartPage.subtotal)
     .should("be.visible")
     .should("contain", `${shoppingCart.calculateSubtotalPrice()}`);
@@ -55,13 +54,11 @@ Cypress.Commands.add("verifySummary", () => {
 
 Cypress.Commands.add("proceedToCheckout", () => {
   cy.get(cartPage.orderTotal).should("be.visible");
-  // cy.get(cartPage.summaryLoader).should("not.be.visible");
   cy.get(cartPage.proceedToCheckout).click({ force: true });
 });
 
 Cypress.Commands.add("checkoutMultipleAddresses", () => {
   cy.get(cartPage.orderTotal).should("be.visible");
-  // cy.get(cartPage.summaryLoader).should("not.be.visible");
   cy.get(cartPage.multiCheckout).click({ force: true });
 });
 
