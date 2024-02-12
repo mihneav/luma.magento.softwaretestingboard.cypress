@@ -62,17 +62,24 @@ Cypress.Commands.add("clickUpdateQtyAndAddresses", () => {
 });
 
 Cypress.Commands.add("placeMultiCheckoutOrder", () => {
+  /* Otherwise it doesn't proceed*/
+  cy.document().its("readyState").should("eq", "complete");
   cy.wait(3000);
+  /*******************************/
 
   cy.get(multiCheckoutPage.continueButton).click();
-  // cy.location("pathname", { timeout: 60000 }).should("include", "/shipping/");
+
+  cy.document().its("readyState").should("eq", "complete");
 
   cy.get(multiCheckoutPage.flatRateRadio).each(($radioButton) => {
     cy.wrap($radioButton).check();
   });
 
+  cy.document().its("readyState").should("eq", "complete");
+
   cy.get(multiCheckoutPage.continueButton).click({ force: true });
-  // cy.location("pathname", { timeout: 60000 }).should("include", "/billing/");
+
+  cy.document().its("readyState").should("eq", "complete");
 
   cy.get(multiCheckoutPage.goToReviewOrder).click({ force: true });
 
@@ -110,7 +117,7 @@ Cypress.Commands.add("addMultiShippingAddress", () => {
 
 Cypress.Commands.add("checkShippingAddressSame", () => {
   cy.get(checkoutPage.loader).should("not.exist");
-  cy.get(checkoutPage.billingAddressCheckbox).click();
+  cy.get(checkoutPage.billingAddressCheckbox, { timeout: 9000 }).click();
   cy.get("@user").then((user) => {
     user.shippingAddress = user.billingAddress;
   });
@@ -168,15 +175,14 @@ Cypress.Commands.add("createAccountThankYou", () => {
 });
 
 Cypress.Commands.add("loginInCheckout", () => {
-  cy.get(checkoutPage.loader).should("not.exist");
+  cy.get(checkoutPage.loadingMask).should("not.exist");
   cy.get("@user").then((user) => {
     cy.get(checkoutPage.signIn).should("be.visible").click();
     cy.get(checkoutPage.emailAddress).type(user.email);
     cy.get(checkoutPage.password).type(user.password);
   });
   cy.get(checkoutPage.signInButton).click();
-  cy.get(checkoutPage.loader).should("be.visible");
-  cy.get(checkoutPage.loader, { timeout: 15000 }).should("not.be.visible");
+  cy.get(checkoutPage.loadingMask).should("not.exist");
 });
 
 Cypress.Commands.add("fillEmailAddressCheckout", () => {

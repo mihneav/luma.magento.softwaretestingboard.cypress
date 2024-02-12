@@ -1,5 +1,4 @@
 const editAddressPage = require("../pageObjects/editAddressPage");
-const myAccountPage = require("../pageObjects/myAccountPage");
 const User = require("../utils/User");
 
 Cypress.Commands.add("generateUser", () => {
@@ -10,7 +9,10 @@ Cypress.Commands.add("generateUser", () => {
 
 Cypress.Commands.add("createAccount", () => {
   cy.visit("/customer/account/create/");
+  // cy.intercept("/customer/section/load**").as("customerData");
+  // Partially fixes running tests on Firefox, but then fails on Chromium-based browsers
   cy.fillCreateAccountDetails();
+  // cy.wait("@customerData");
 });
 
 Cypress.Commands.add("logout", () => {

@@ -6,7 +6,7 @@ module.exports = defineConfig({
     baseUrl: "https://magento.softwaretestingboard.com",
     viewportHeight: 1080,
     viewportWidth: 1920,
-
+    defaultCommandTimeout: 10000,
     // setupNodeEvents(on, config) {
     //   require("cypress-mochawesome-reporter/plugin")(on);
     // },

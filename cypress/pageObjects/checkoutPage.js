@@ -16,7 +16,7 @@ const checkoutPage = {
   flatRateRatio: `.radio:nth(1)`,
   billingAddress: `.billing-address-details`,
   shippingAddress: `.ship-to > .shipping-information-content`,
-  billingAddressCheckbox: `#billing-address-same-as-shipping-checkmo`,
+  billingAddressCheckbox: `.billing-address-same-as-shipping-block`,
   placeOrderButton: `.payment-method-content .action.primary`,
   successTitle: `.base`,
   orderNumberLink: `.order-number > strong`,
@@ -25,6 +25,7 @@ const checkoutPage = {
   password: `#login-password`,
   signInButton: `.authentication-wrapper .primary`,
   loader: `#checkout-loader`,
+  loadingMask: `.loading-mask`,
   orderNumberText: `.checkout-success > > span`,
   createAccount: `#registration .action`,
 };

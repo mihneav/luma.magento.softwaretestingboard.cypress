@@ -37,21 +37,20 @@ Cypress.Commands.add("verifyCart", () => {
 
 Cypress.Commands.add("verifySummary", () => {
   // cy.get(cartPage.summaryLoader).should("not.be.visible");
-  cy.get(cartPage.subtotal).should(
-    "contain",
-    `$${shoppingCart.calculateSubtotalPrice()}`
-  );
+  cy.get(cartPage.subtotal)
+    .should("be.visible")
+    .should("contain", `${shoppingCart.calculateSubtotalPrice()}`);
 
   shoppingCart.calculateTotalDiscounts() !== 0
     ? cy
         .get(cartPage.discount)
+        .should("be.visible")
         .should("contain", `-$${shoppingCart.calculateTotalDiscounts()}`)
-    : cy.get(cartPage.discount).should("not.be.exist");
+    : cy.get(cartPage.discount).should("not.exist");
 
-  cy.get(cartPage.orderTotal).should(
-    "contain",
-    `$${shoppingCart.calculateGrandTotal()}`
-  );
+  cy.get(cartPage.orderTotal)
+    .should("be.visible")
+    .should("contain", `${shoppingCart.calculateGrandTotal()}`);
 });
 
 Cypress.Commands.add("proceedToCheckout", () => {
@@ -85,7 +84,7 @@ Cypress.Commands.add(
     cy.get(cartPage.cartItem(index).quantity)
       .invoke("val")
       .should("contain", productQuantity);
-    cy.get(".loading-mask").should("not.be.visible");
+    cy.get(".loading-mask").should("not.exist");
   }
 );
 

@@ -4,7 +4,7 @@ const myOrderPage = {
   orderItemRow: function (index) {
     const selector = `[id^="order-item-row"]:nth(${index})`;
     return {
-      name: `${selector} [data-th="Price"]`,
+      name: `${selector} .product`,
       itemOptions: `${selector}  .item-options`,
       sku: `${selector} .sku`,
       price: `${selector}  > .col.price .price`,
@@ -20,7 +20,8 @@ const myOrderPage = {
   shippingAddress: `.box-order-shipping-address > .box-content > address`,
   shippingMethod: `.box-order-shipping-method > .box-content`,
   billingAddress: `.box-order-billing-address > .box-content > address`,
-  reorder: `.order > span`,
+  reorder: `.action.order`,
+  sidebarRecentlyOrdered: `#reorder-validate-detail`,
 };
 
 module.exports = myOrderPage;

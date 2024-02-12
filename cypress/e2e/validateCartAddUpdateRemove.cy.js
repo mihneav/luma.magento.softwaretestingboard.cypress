@@ -9,7 +9,7 @@ describe("Validate Add/Update/Remove Cart Functionality", () => {
     // Modify "Radiant Tee" quantity from 4 to 7
     // Modify "Aether Gym Pant" from 1 to 3
     // Verify cart product details
-    // Verify Cart Summary
+    // Verify cart Summary
 
     cy.addProductToCart("Aether Gym Pant", 2, "34", "Brown");
     cy.addProductToCart("Radiant Tee", 2, "S", "Blue");
@@ -46,7 +46,7 @@ describe("Validate Add/Update/Remove Cart Functionality", () => {
     // Add All Wishlist Products to Cart
     // Go to Cart
     // Verify cart product details
-    // Verify Cart Summary
+    // Verify cart Summary
     cy.generateUser().as("user");
     cy.createAccount();
     cy.addProductToWishlist("Radiant Tee", 4, "S", "Blue");

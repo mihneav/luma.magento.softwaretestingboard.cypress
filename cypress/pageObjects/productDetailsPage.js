@@ -1,5 +1,5 @@
 const productDetailsPage = {
-  size: `.size > > `,
+  size: `[id^="option-label-size-"].swatch-option`,
   color: function (color) {
     return `[option-label="${color}"]`;
   },

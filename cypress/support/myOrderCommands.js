@@ -9,41 +9,47 @@ Cypress.Commands.add("verifyOrders", () => {
       cy.get(myOrderPage.orderTitle).should("contain", order.orderNumber);
       cy.get(myOrderPage.orderStatus).should("have.text", "Pending");
       order.products.forEach((product, index) => {
-        cy.get(myOrderPage.orderItemRow(index).quantity).should(
-          "have.text",
-          order.products[index].quantity.toString()
-        );
-        cy.get(myOrderPage.orderItemRow(index).price).should(
-          "contain",
-          order.products[index].price
-        );
-        cy.get(myOrderPage.orderItemRow(index).subtotal).should(
-          "contain",
-          order.products[index].price * order.products[index].quantity
-        );
-        if (order.products[index].size) {
-          cy.get(myOrderPage.orderItemRow(index).itemOptions).should(
+        cy.get(myOrderPage.orderItemRow(index).name)
+          .should("be.visible")
+          .should("contain", order.products[index].name);
+        cy.get(myOrderPage.orderItemRow(index).quantity)
+          .should("be.visible")
+          .should("have.text", order.products[index].quantity.toString());
+        cy.get(myOrderPage.orderItemRow(index).price)
+          .should("be.visible")
+          .should("contain", order.products[index].price);
+        cy.get(myOrderPage.orderItemRow(index).subtotal)
+          .should("be.visible")
+          .should(
             "contain",
-            order.products[index].size
+            order.products[index].price * order.products[index].quantity
           );
+        if (order.products[index].size) {
+          cy.get(myOrderPage.orderItemRow(index).itemOptions)
+            .should("be.visible")
+            .should("contain", order.products[index].size);
         }
         if (order.products[index].color) {
-          cy.get(myOrderPage.orderItemRow(index).itemOptions).should(
-            "contain",
-            order.products[index].color
-          );
+          cy.get(myOrderPage.orderItemRow(index).itemOptions)
+            .should("be.visible")
+            .should("contain", order.products[index].color);
         }
       });
-      cy.get(myOrderPage.subtotal).should("contain", order.subtotal.toFixed(2));
+      cy.get(myOrderPage.subtotal)
+        .should("be.visible")
+        .should("contain", order.subtotal.toFixed(2));
       if (order.discount > 0) {
-        cy.get(myOrderPage.discount).should(
-          "contain",
-          order.discount.toFixed(2)
-        );
+        cy.get(myOrderPage.discount)
+          .should("be.visible")
+          .should("contain", order.discount.toFixed(2));
       }
 
-      cy.get(myOrderPage.shipping).should("contain", order.shipping.toFixed(2));
-      cy.get(myOrderPage.grandTotal).should("contain", order.total);
+      cy.get(myOrderPage.shipping)
+        .should("be.visible")
+        .should("contain", order.shipping.toFixed(2));
+      cy.get(myOrderPage.grandTotal)
+        .should("be.visible")
+        .should("contain", order.total);
 
       //TODO: refactor
       cy.get(myOrderPage.billingAddress, { timeout: 9000 })
@@ -75,6 +81,7 @@ Cypress.Commands.add("reorder", () => {
     const lastOrderIndex = user.orders.length - 1;
     const lastOrderNumber = user.orders[lastOrderIndex].orderNumber;
     cy.visit(`/sales/order/view/order_id/${lastOrderNumber - 1}`);
+    cy.get(myOrderPage.sidebarRecentlyOrdered).should("be.visible");
     cy.get(myOrderPage.reorder).click();
     cy.verifyCart();
     cy.verifySummary();

@@ -8,7 +8,7 @@ describe("Validate Place Order Functionality", () => {
     // Create Account
     // Add "Radiant Tee" to the Cart, quantity 3
     // Add "Arcadio Gym Short", quantity 1
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Proceed to checkout
     // Type Shipping Address Details
@@ -43,10 +43,10 @@ describe("Validate Place Order Functionality", () => {
     // Add "Radiant Tee" to the Cart, quantity 4
     // Add "Arcadio Gym Short", quantity 1
     // Add "Affirm Water Bottle", quantity 2
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Add "h20" voucher
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Proceed to checkout
     // Type Shipping Address Details
@@ -90,7 +90,7 @@ describe("Validate Place Order Functionality", () => {
     // Create User Account
     // Logout
     // Add "Arcadio Gym Short" to the Cart, quantity 3
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Proceed to checkout
     // Log in Checkout
@@ -128,7 +128,7 @@ describe("Validate Place Order Functionality", () => {
     // Create User Account
     // Logout
     // Add "Arcadio Gym Short" to the Cart, quantity 3
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Proceed to checkout
     // Log in Checkout
@@ -162,7 +162,7 @@ describe("Validate Place Order Functionality", () => {
     // Create User Account
     // Add "Arcadio Gym Short" to the Cart, quantity 1
     // Add "Radiant Tee" to the Cart, quantity 1
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Checkout with Multiple Addresses
     // Add a Shipping Address for each Cart Item
@@ -194,7 +194,7 @@ describe("Validate Place Order Functionality", () => {
     // Add "Radiant Tee" to the Cart, quantity 4
     // Add "Arcadio Gym Short", quantity 1
     // Add "Affirm Water Bottle", quantity 2
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Proceed to checkout
     // Type Shipping Address Details
@@ -206,7 +206,7 @@ describe("Validate Place Order Functionality", () => {
     // Verify Order Success Message
     // Go to the last order in My Orders page
     // Click Reorder
-    // Verify product details
+    // Verify cart product details
     // Verify Order Summary
     // Select "Best Way" shipping and click "Next"
     // Verifies Shipping Address

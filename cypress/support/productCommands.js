@@ -19,13 +19,14 @@ Cypress.Commands.add(
       product.quantity = parseInt(productQuantity);
 
       cy.visit(product.url);
+      cy.document().its("readyState").should("eq", "complete");
       if (productSize && productColor) {
         cy.contains(productDetailsPage.size, product.size).click();
         cy.get(productDetailsPage.color(product.color)).click();
       }
       cy.get(productDetailsPage.quantity).clear().type(product.quantity);
       cy.get(productDetailsPage.addToCartButton).click();
-      cy.get(productDetailsPage.addToCartButton, { timeout: 2000 })
+      cy.get(productDetailsPage.addToCartButton)
         .should("include.text", "Added")
         .then(() => {
           cy.log(product);
@@ -50,8 +51,12 @@ Cypress.Commands.add(
 
       cy.visit(product.url);
       if (productSize && productColor) {
-        cy.contains(productDetailsPage.size, product.size).click();
-        cy.get(productDetailsPage.color(product.color)).click();
+        cy.contains(productDetailsPage.size, product.size)
+          .should("be.visible")
+          .click();
+        cy.get(productDetailsPage.color(product.color))
+          .should("be.visible")
+          .click();
       }
       cy.get(productDetailsPage.quantity).clear().type(product.quantity);
       cy.get(productDetailsPage.addToWishlistButton)

@@ -62,16 +62,18 @@ class ShoppingCart {
     return parseFloat(totalShirtDiscount);
   }
 
-  // calculatePantsDiscount() { //promotion not implemented
-  //   const discountedPants = this.products.filter((product) =>
-  //     product.name.includes("Pant")
-  //   );
-  //   console.log(discountedPants);
-  //   const totalPantsDiscount = discountedPants
-  //     .reduce((sum, product) => sum + product.price * product.quantity * 0.2, 0)
-  //     .toFixed(2);
-  //   return parseFloat(totalPantsDiscount);
-  // }
+  /*Promotion not implemented 
+  calculatePantsDiscount() { //promotion not implemented
+    const discountedPants = this.products.filter((product) =>
+      product.name.includes("Pant")
+    );
+    console.log(discountedPants);
+    const totalPantsDiscount = discountedPants
+      .reduce((sum, product) => sum + product.price * product.quantity * 0.2, 0)
+      .toFixed(2);
+    return parseFloat(totalPantsDiscount);
+  }
+  **/
 
   calculateTwentyPercentDiscountOnOrder() {
     let discount = 0;
@@ -92,7 +94,7 @@ class ShoppingCart {
     const discountedBottles = this.products.filter((product) =>
       product.name.includes("Water Bottle")
     );
-    if (this.coupon === "h20") {
+    if (this.coupon === "h20" && discountedBottles) {
       totalCouponDiscount = discountedBottles
         .reduce(
           (sum, product) => sum + product.price * product.quantity * 0.7,
@@ -124,7 +126,7 @@ class ShoppingCart {
 
   clear() {
     this.products.length = 0;
-    this.cupon = "";
+    this.coupon = "";
   }
 }
 
