@@ -29,15 +29,13 @@ npx cypress open
 - The AUT rarely Message: Cannot read properties of undefined (reading 'clone') in Product Details pages.
 - The AUT rarely throws (uncaught exception)ReferenceError: Unable to process binding "afterRender: function(){return setModalElement }" Message: setModalElement is not defined in the Cart Page
 - Not all promotions are implemented
-- 
+
+
 ## Known Issues with the Current Implementation
 - validatePlaceOrder.cy.js - Place order with multiple addresses sometimes fails due to not proceeding in the Multi Shipping process
-
 - validatePlaceOrder.cy.js - Reoder process sometimes fails due to not proceeding after pressing the Reorder Button
-
 - Tests fail when encountering issues mentioned in Known Issues with the AUT
 - Order Total validation fails due to some states having taxes implemented
-
 - Tests don't properly run Firefox
 
 ## Bugs
