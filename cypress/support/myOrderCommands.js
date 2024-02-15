@@ -51,27 +51,8 @@ Cypress.Commands.add("verifyOrders", () => {
         .should("be.visible")
         .should("contain", order.total);
 
-      //TODO: refactor
-      cy.get(myOrderPage.billingAddress, { timeout: 9000 })
-        .should("be.visible")
-        .as("billingAddress");
-      cy.get(`@billingAddress`).should("contain", user.firstName);
-      cy.get(`@billingAddress`).should("contain", user.lastName);
-      cy.get(`@billingAddress`).should("contain", user.mobileNumber);
-
-      Object.values(order.billingAddress).forEach((value) => {
-        cy.get(`@billingAddress`).should("contain", value);
-      });
-      cy.get(myOrderPage.shippingAddress, { timeout: 9000 })
-        .should("be.visible")
-        .as("shippingAddress");
-      cy.get(`@shippingAddress`).should("contain", user.firstName);
-      cy.get(`@shippingAddress`).should("contain", user.lastName);
-      cy.get(`@shippingAddress`).should("contain", user.mobileNumber);
-
-      Object.values(order.shippingAddress).forEach((value) => {
-        cy.get(`@shippingAddress`).should("contain", value);
-      });
+      cy.verifyAddress("billingAddress", myOrderPage, user);
+      cy.verifyAddress("shippingAddress", myOrderPage, user);
     });
   });
 });

@@ -33,11 +33,15 @@ Cypress.Commands.add("selectFlatRateShippingAndNext", () => {
 });
 
 Cypress.Commands.add("verifyBillingAddressCheckout", () => {
-  cy.verifyAddress("billingAddress", checkoutPage);
+  cy.get("@user").then((user) => {
+    cy.verifyAddress("billingAddress", checkoutPage, user);
+  });
 });
 
 Cypress.Commands.add("verifyShippingAddressCheckout", () => {
-  cy.verifyAddress("shippingAddress", checkoutPage);
+  cy.get("@user").then((user) => {
+    cy.verifyAddress("shippingAddress", checkoutPage, user);
+  });
 });
 
 Cypress.Commands.add("addShippingAddressForEachCartItem", () => {
